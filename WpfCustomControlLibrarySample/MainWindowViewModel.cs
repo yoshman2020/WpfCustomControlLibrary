@@ -228,6 +228,52 @@ namespace WpfCustomControlLibrarySample
 
         #endregion
 
+        #region TextChanged
+
+        private RelayCommand rangeSliderTextChangedCommand;
+
+        public ICommand RangeSliderTextChangedCommand
+        {
+            get
+            {
+                if (rangeSliderTextChangedCommand == null)
+                {
+                    rangeSliderTextChangedCommand = new RelayCommand(RangeSliderTextChanged);
+                }
+
+                return rangeSliderTextChangedCommand;
+            }
+        }
+
+        private void RangeSliderTextChanged(object commandParameter)
+        {
+        }
+
+        #endregion
+
+        #region LostFocus
+
+        private RelayCommand rangeSliderLostFocusCommand;
+
+        public ICommand RangeSliderLostFocusCommand
+        {
+            get
+            {
+                if (rangeSliderLostFocusCommand == null)
+                {
+                    rangeSliderLostFocusCommand = new RelayCommand(RangeSliderLostFocus);
+                }
+
+                return rangeSliderLostFocusCommand;
+            }
+        }
+
+        private void RangeSliderLostFocus(object commandParameter)
+        {
+        }
+
+        #endregion
+
         #endregion
 
     }

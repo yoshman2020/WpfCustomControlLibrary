@@ -69,9 +69,14 @@
             LowerValue="{Binding RangeSliderLowerValue, Mode=TwoWay}"
             UpperValue="{Binding RangeSliderUpperValue, Mode=TwoWay}"
             DragCompleted="{Binding RangeSliderDragCompletedCommand}"
+            TextChanged="{Binding RangeSliderTextChangedCommand}"
+            LostFocus="{Binding RangeSliderLostFocusCommand}"
             StringFormat="0"
             FontSize="16"
             MinMaxFontSize="10"
+            LabelFontSize="24"
+            Text="ラベル2"
+            LabelWidth="3*"
             SliderWidth="5*"
             NumericWidth="2*"
             />
@@ -82,6 +87,8 @@
             LowerValue="{Binding RangeSliderLowerValueD, Mode=TwoWay}"
             UpperValue="{Binding RangeSliderUpperValueD, Mode=TwoWay}"
             DragCompleted="{Binding RangeSliderDragCompletedCommand}"
+            TextChanged="{Binding RangeSliderTextChangedCommand}"
+            LostFocus="{Binding RangeSliderLostFocusCommand}"
             StringFormat="0.00"
             />
     </Grid>

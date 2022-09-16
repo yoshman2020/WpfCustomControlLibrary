@@ -60,12 +60,29 @@
     </UserControl.Resources>
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ElementName=uc, Path=LabelWidth}"/>
             <ColumnDefinition Width="{Binding ElementName=uc, Path=NumericWidth}" MinWidth="40"/>
             <ColumnDefinition Width="{Binding ElementName=uc, Path=SliderWidth}"/>
             <ColumnDefinition Width="{Binding ElementName=uc, Path=NumericWidth}" MinWidth="40"/>
         </Grid.ColumnDefinitions>
-        <DockPanel
+        <Border HorizontalAlignment="Left">
+            <TextBlock
+                Text="{Binding ElementName=uc, Path=Text}"
+                FontSize="{Binding ElementName=uc, Path=LabelFontSize}"
+                />
+        </Border>
+        <local:NumericUpDown
             Grid.Column="1"
+            Value="{Binding ElementName=LowerSlider, Path=Value, Mode=TwoWay}"
+            Minimum="{Binding ElementName=uc, Path=Minimum}"
+            Maximum="{Binding ElementName=uc, Path=Maximum}"
+            StringFormat="{Binding ElementName=uc, Path=StringFormat}"
+            TextChanged="{Binding ElementName=uc, Path=TextChanged}"
+            LostFocus="{Binding ElementName=uc, Path=LostFocus}"
+            Margin="5"
+            />
+        <DockPanel
+            Grid.Column="2"
             LastChildFill="False"
             >
             <Grid DockPanel.Dock="Top">
@@ -112,19 +129,13 @@
                 />
         </DockPanel>
         <local:NumericUpDown
-            Grid.Column="0"
-            Value="{Binding ElementName=LowerSlider, Path=Value, Mode=TwoWay}"
-            Minimum="{Binding ElementName=uc, Path=Minimum}"
-            Maximum="{Binding ElementName=uc, Path=Maximum}"
-            StringFormat="{Binding ElementName=uc, Path=StringFormat}"
-            Margin="5"
-            />
-        <local:NumericUpDown
-            Grid.Column="2"
+            Grid.Column="3"
             Value="{Binding ElementName=UpperSlider, Path=Value, Mode=TwoWay}"
             Minimum="{Binding ElementName=uc, Path=Minimum}"
             Maximum="{Binding ElementName=uc, Path=Maximum}"
             StringFormat="{Binding ElementName=uc, Path=StringFormat}"
+            TextChanged="{Binding ElementName=uc, Path=TextChanged}"
+            LostFocus="{Binding ElementName=uc, Path=LostFocus}"
             Margin="5"
             />
     </Grid>
