@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WinFormsControlLibrary
 {
-    [DefaultEvent("ValueChanged")]
+    [DefaultEvent("ValueChangedEnd")]
     public partial class NumericTrack : UserControl
     {
         #region variables
@@ -61,7 +61,7 @@ namespace WinFormsControlLibrary
         /// </remarks>
         [Category("Action")]
         [Description("トラックバースクロールが終了するときに発生します。")]
-        public event EventHandler EndValueChanged;
+        public event EventHandler ValueChangedEnd;
 
         #endregion delegates
 
@@ -108,10 +108,12 @@ namespace WinFormsControlLibrary
         private void TrackBar1_MouseUp(object sender, MouseEventArgs e)
         {
             if (!_clicked)
+            {
                 return;
+            }
 
             _clicked = false;
-            EndValueChanged?.Invoke(this, e);
+            ValueChangedEnd?.Invoke(this, e);
         }
 
         /// <summary>
@@ -151,7 +153,7 @@ namespace WinFormsControlLibrary
                 if (Value != numericUpDown1.Value)
                 {
                     Value = Convert.ToInt32(numericUpDown1.Value);
-                    EndValueChanged?.Invoke(this, e);
+                    ValueChangedEnd?.Invoke(this, e);
                 }
             }
             catch (Exception ex)
@@ -170,7 +172,7 @@ namespace WinFormsControlLibrary
 
             try
             {
-                EndValueChanged?.Invoke(this, e);
+                ValueChangedEnd?.Invoke(this, e);
             }
             catch (Exception ex)
             {
@@ -301,6 +303,14 @@ namespace WinFormsControlLibrary
         /// <returns>ステップ単位の値</returns>
         private int GetSteppedValue(double value)
         {
+            if (value < Minimum)
+            {
+                return Minimum;
+            }
+            if (Maximum < value)
+            {
+                value = Maximum;
+            }
             return Convert.ToInt32(Math.Round(
                 (double)(value - Minimum) / Step) * Step) + Minimum;
         }

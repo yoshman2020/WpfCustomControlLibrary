@@ -39,7 +39,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(94, 33);
+            this.numericUpDown1.Location = new System.Drawing.Point(106, 22);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(50, 19);
             this.numericUpDown1.TabIndex = 3;
@@ -49,7 +49,7 @@
             // labelMax
             // 
             this.labelMax.AutoSize = true;
-            this.labelMax.Location = new System.Drawing.Point(150, 35);
+            this.labelMax.Location = new System.Drawing.Point(81, 54);
             this.labelMax.Name = "labelMax";
             this.labelMax.Size = new System.Drawing.Size(23, 12);
             this.labelMax.TabIndex = 4;
@@ -58,7 +58,7 @@
             // labelMin
             // 
             this.labelMin.AutoSize = true;
-            this.labelMin.Location = new System.Drawing.Point(0, 35);
+            this.labelMin.Location = new System.Drawing.Point(0, 54);
             this.labelMin.Name = "labelMin";
             this.labelMin.Size = new System.Drawing.Size(11, 12);
             this.labelMin.TabIndex = 1;
@@ -67,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 35);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 2;
@@ -75,9 +75,9 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(0, 0);
+            this.trackBar1.Location = new System.Drawing.Point(-5, 17);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(173, 45);
+            this.trackBar1.Size = new System.Drawing.Size(111, 45);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TrackBar1_MouseDown);
@@ -93,7 +93,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Name = "NumericTrack";
-            this.Size = new System.Drawing.Size(173, 52);
+            this.Size = new System.Drawing.Size(158, 68);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
