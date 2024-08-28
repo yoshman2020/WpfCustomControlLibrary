@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="WpfCustomControlLibrary.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:validation="clr-namespace:WpfCustomControlLibrary.Validations"
+             xmlns:helper="clr-namespace:WpfCustomControlLibrary.Helpers"
+             xmlns:local="clr-namespace:WpfCustomControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="uc">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/CommonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="MaxWidth" Value="120"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="*" MaxWidth="120"/>
+        </Grid.ColumnDefinitions>
+        <TextBox
+            Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+            HorizontalAlignment="Stretch"
+            x:Name="textNum"
+            TextAlignment="Right"
+            VerticalContentAlignment="Center"
+            helper:StringFormatHelper.Format="{Binding StringFormat, ElementName=uc}"
+            Text="{Binding (helper:StringFormatHelper.FormattedValue), RelativeSource={RelativeSource Self}}"
+            TextChanged="TextNum_TextChanged"
+            LostFocus="TextNum_LostFocus"
+            >
+            <TextBox.Resources>
+                <validation:BindingProxy x:Key="proxy" Data="{Binding ElementName=uc}"/>
+            </TextBox.Resources>
+            <Validation.ErrorTemplate>
+                <StaticResource ResourceKey="validationTemplate"/>
+            </Validation.ErrorTemplate>
+            <helper:StringFormatHelper.Value>
+                <Binding
+                    Path="Value" ElementName="uc"
+                    UpdateSourceTrigger="PropertyChanged"
+                    Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <validation:NumericValidationRule>
+                            <validation:NumericValidationRule.NumericValidationWrapper>
+                                <validation:NumericValidationWrapper
+                                    Minimum="{Binding Data.Minimum, Source={StaticResource proxy}}"
+                                    Maximum="{Binding Data.Maximum, Source={StaticResource proxy}}"
+                                    />
+                            </validation:NumericValidationRule.NumericValidationWrapper>
+                        </validation:NumericValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </helper:StringFormatHelper.Value>
+        </TextBox>
+        <Button
+            Grid.Column="1" Grid.Row="0"
+            x:Name="cmdUp"
+            x:FieldModifier="private"
+            Click="CmdUp_Click"
+            IsTabStop="False"
+            >
+            <Viewbox Stretch="Uniform">
+                <TextBlock Text="▲"/>
+            </Viewbox>
+        </Button>
+        <Button
+            Grid.Column="1" Grid.Row="1"
+            x:Name="cmdDown"
+            x:FieldModifier="private"
+            Click="CmdDown_Click"
+            IsTabStop="False"
+            >
+            <Viewbox Stretch="Uniform">
+                <TextBlock Text="▼"/>
+            </Viewbox>
+        </Button>
+    </Grid>
+</UserControl>

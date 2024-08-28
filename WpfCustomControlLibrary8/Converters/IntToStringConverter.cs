@@ -1,0 +1,42 @@
+﻿using System.Globalization;
+using System.Windows.Data;
+
+namespace WpfCustomControlLibrary.Converters
+{
+    /// <summary>
+    /// 整数を文字列に変換するコンバータ
+    /// </summary>
+    [ValueConversion(typeof(int), typeof(string))]
+    public class IntToStringConverter : IValueConverter
+    {
+        /// <summary>
+        /// 整数を文字列に変換
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString() ?? "";
+        }
+
+        /// <summary>
+        /// 文字列を整数に変換
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!double.TryParse(value.ToString(), out var doubleValue))
+            {
+                return 0;
+            }
+            return Math.Round(doubleValue, MidpointRounding.AwayFromZero);
+        }
+    }
+}
